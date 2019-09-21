@@ -11,3 +11,85 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+#test{
+  color: green;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  justify-content: center;
+
+  height: 100vh;
+  width: 100vw;
+  /* background: yellow; */
+ }
+ 
+ .button-container{
+  
+   margin-top: 30px;
+   margin-bottom: 30px;
+
+   width: 80%;
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   justify-content: space-around;
+ }
+ button{
+   height: 80px;
+   width: 25%;
+   margin: 2px;
+ }
+ .person-card{
+   height: 20px;
+   width:80%;
+   margin: 2px auto 2px auto;
+   display: flex; 
+   /* justify-content: space-between; */
+   align-items: center;
+ }
+ .list{
+   display: flex;
+   flex-direction: column;
+   margin: auto;
+ }
+
+ #name{
+   width: 200px;
+  
+ }
+ #height{
+  width: 100px;
+ 
+}
+
+#mass{
+  width: 100px;
+ 
+}
+
+#click-me{
+  height: 400px;
+  padding: 20px;
+  width: 200px;
+  background: rgb(56, 192, 255);
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+#hidden{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+#hidden img{
+  height: auto;
+  width: 60%;
+  margin: auto;
+}
