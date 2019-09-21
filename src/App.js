@@ -8,6 +8,7 @@ class App extends Component {
     super()
     this.state = {
       sortedPeople: [],
+      planets:[],
       listSeen: '',
       show: false
     }
@@ -23,12 +24,28 @@ class App extends Component {
       this.setState({
         sortedPeople: res.data,
         listSeen: value,
+        planets:[],
       })
     })
-    console.log('test', this.state.listSeen)
+    
 
 
   }
+
+
+planetApi = async () => { 
+  await axios.get(`/planets`).then((res) => {
+    console.log(res)
+    this.setState({
+      planets: res.data,
+      sortedPeople: []
+     
+    })
+  })
+
+
+
+}
 
   show = () => {
     this.setState({
@@ -40,7 +57,17 @@ class App extends Component {
 
     const people = this.state.sortedPeople.map((element, index) => {
       return <div key={index} className='person-card'>
-        <div id='name'>{element.name}</div>  <div id='height'>{element.height}cm </div> <div id='mass'>{element.mass}kg</div>
+        <div className='name'>{element.name}</div>  <div className='height'>{element.height}cm </div> <div className='mass'>{element.mass}kg</div>
+      </div>
+    })
+
+    const planets = this.state.planets.map((ele, index) => { 
+      const names =ele.residents.map((e, i)=> { 
+        return <div className='names'>{e}</div>
+      })
+      return <div className='planet-card'key={index}>
+ <div className='name'>{ele.name}</div> <div className='resident-names'>{names} </div>
+
       </div>
     })
 
@@ -65,6 +92,7 @@ class App extends Component {
 
 
         </div>
+        <button onClick={this.planetApi}>Click for planets</button>
 
         <div className='list'>
           {
@@ -74,6 +102,7 @@ class App extends Component {
           }
 
           {people}
+          {planets}
         </div>
         {
           this.state.show ? <div id='hidden'>

@@ -10,6 +10,8 @@ const ctrl = require('./controller')
 
 
   app.get('/people', ctrl.sortPeople)
+  app.get('/planets', ctrl.getPlanets)
+
 
 
   

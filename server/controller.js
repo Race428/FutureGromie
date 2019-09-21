@@ -1,25 +1,54 @@
 const axios = require('axios')
 
 module.exports = {
-    
-getPeople: async (req, res) => { 
- var swapiResults = [];
-    
+
+
+    getPlanets: async (req, res) => {
+        var swapiResults = [];
+
+
         // Pagination 
-        for (let i = 1; i < 10; i++) {
-            let spawiResponse = await axios.get(`https://swapi.co/api/people?page=${i}`)
+        for (let i = 1; i < 8; i++) {
+            let spawiResponse = await axios.get(`https://swapi.co/api/planets?page=${i}`)
             swapiResults.push(...spawiResponse.data.results)
         }
 
-        res.status.send(swapiResults)
-},
+        for (let i = 0; i < swapiResults.length; i++) {
+          
+          //skips the itteration if there is no residents
+            if (swapiResults[i].residents.length < 1) {
+                swapiResults[i].residents = ["This planet is a lone and dreary world"]
+                continue
+            }
 
-    
+
+            for (let k = 0; k < swapiResults[i].residents.length; k++) {
+                let personApiUrl = swapiResults[i].residents[k]
+                // console.log('person url', personApiUrl)
+                let residentResponse = await axios.get(personApiUrl)
+                let residentName = residentResponse.data.name
+                // console.log('person name', residentName)
+                swapiResults[i].residents[k] = residentName
+
+
+
+            }
+           
+
+
+        }
+
+
+        console.log(swapiResults)
+
+        res.status(200).send(swapiResults)
+    },
+
+
     sortPeople: async (req, res) => {
-        
+
         const { sortBy } = req.query
         var swapiResults = [];
-    console.log('sort',sortBy)
         // Pagination 
 
         for (let i = 1; i < 10; i++) {
@@ -53,7 +82,7 @@ getPeople: async (req, res) => {
 
         // Height Formulas
 
-    
+
         for (let k = 0; k < swapiResults.length; k++) {
             let number = parseInt(swapiResults[k].height);
             swapiResults[k].height = number
@@ -72,7 +101,8 @@ getPeople: async (req, res) => {
 
         // Sorting
 
-        if(sortBy ===''){
+        if (sortBy === '') {
+            console.log(swapiResults)
             res.status(200).send(swapiResults)
         }
 
@@ -83,6 +113,7 @@ getPeople: async (req, res) => {
             })
 
             let sortedResults = mass;
+            console.log(sortedResults)
             res.status(200).send(sortedResults)
 
         };
@@ -92,6 +123,7 @@ getPeople: async (req, res) => {
                 return b.mass - a.mass
             })
             let sortedResults = mass;
+            console.log(sortedResults)
             res.status(200).send(sortedResults)
         };
 
@@ -103,6 +135,8 @@ getPeople: async (req, res) => {
                 return 0;
             })
             let sortedResults = name;
+            console.log(sortedResults)
+
             res.status(200).send(sortedResults);
         };
 
@@ -113,6 +147,7 @@ getPeople: async (req, res) => {
                 return 0;
             })
             let sortedResults = name;
+            console.log(sortedResults)
             res.status(200).send(sortedResults)
         };
 
@@ -122,15 +157,17 @@ getPeople: async (req, res) => {
             })
 
             let sortedResults = height;
+            console.log(sortedResults)
             res.status(200).send(sortedResults)
         }
         if (sortBy === "height-high") {
-            
+
             let height = swapiResults.sort(function (a, b) {
                 return b.height - a.height
             })
 
             let sortedResults = height;
+            console.log(sortedResults)
             res.status(200).send(sortedResults)
         }
     }

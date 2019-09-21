@@ -56,18 +56,19 @@ code {
    display: flex;
    flex-direction: column;
    margin: auto;
+   align-items: center;
  }
 
- #name{
+ .name{
    width: 200px;
   
  }
- #height{
+ .height{
   width: 100px;
  
 }
 
-#mass{
+.mass{
   width: 100px;
  
 }
@@ -98,5 +99,22 @@ code {
   height: auto;
   width: 60%;
   margin: auto;
+
+}
+
+.planet-card{
+  /* height: 50px; */
+  width:100%;
+  margin: 1px auto 10px auto;
+  display: flex; 
+  /* justify-content: space-between; */
+  align-items: center;
+  border-bottom: 1px solid grey;
+  
+}
+.names{
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
 
 }
