@@ -2,7 +2,7 @@
 
 ### `npm start`
 
-### `Nodemon`
+### `nodemon`
 
 To start the server
 
