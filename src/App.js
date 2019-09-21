@@ -52,6 +52,7 @@ class App extends Component {
 
         <div className='button-container'>
 
+        <button onClick={() => this.sortBy("")}>Sort By I dont care, just give me my peeps.</button>
 
           <button onClick={() => this.sortBy("mass-low")}>Sort By Mass - Low to High</button>
           <button onClick={() => this.sortBy("mass-high")}>Sort By Mass - High to Low</button>
@@ -77,7 +78,7 @@ class App extends Component {
         {
           this.state.show ? <div id='hidden'>
             <img  src={text} alt='gif' />
-            <p>P.S, my favorite show is Better Call Saul, and the main character is named Jimmy...</p>
+            <p>P.S, my favorite show is Better Call Saul, and the main character is named Jimmy... So, pretty dope to know you.</p>
           </div> :
             <></>
         }

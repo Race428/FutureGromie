@@ -1,14 +1,26 @@
 const axios = require('axios')
 
 module.exports = {
+    
+getPeople: async (req, res) => { 
+ var swapiResults = [];
+    
+        // Pagination 
+        for (let i = 1; i < 10; i++) {
+            let spawiResponse = await axios.get(`https://swapi.co/api/people?page=${i}`)
+            swapiResults.push(...spawiResponse.data.results)
+        }
+
+        res.status.send(swapiResults)
+},
+
+    
     sortPeople: async (req, res) => {
+        
         const { sortBy } = req.query
         var swapiResults = [];
-    
-
-
+    console.log('sort',sortBy)
         // Pagination 
-
 
         for (let i = 1; i < 10; i++) {
             let spawiResponse = await axios.get(`https://swapi.co/api/people?page=${i}`)
@@ -60,6 +72,9 @@ module.exports = {
 
         // Sorting
 
+        if(sortBy ===''){
+            res.status(200).send(swapiResults)
+        }
 
         if (sortBy === "mass-low") {
 

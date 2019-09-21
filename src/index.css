@@ -22,8 +22,9 @@ code {
   
   justify-content: center;
 
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
+  overflow: scroll;
   /* background: yellow; */
  }
  
@@ -72,24 +73,30 @@ code {
 }
 
 #click-me{
-  height: 400px;
-  padding: 20px;
+  height: 100px;
+  /* padding: 20px; */
   width: 200px;
   background: rgb(56, 192, 255);
   box-sizing: border-box;
   margin-top: 20px;
   margin-bottom: 50px;
-  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #hidden{
   display: flex;
   justify-content: center;
   flex-direction: column;
+  /* margin-bottom: 50px; */
 
 }
 #hidden img{
   height: auto;
   width: 60%;
   margin: auto;
+
 }
